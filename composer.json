@@ -1,0 +1,25 @@
+{
+    "name": "freescout/louketoauth",
+    "description": "",
+    "authors": [
+        {
+            "name": "FreeScout",
+            "email": "support@freescout.net"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\LouketoAuth\\Providers\\LouketoAuthServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\LouketoAuth\\": ""
+        }
+    }
+}
