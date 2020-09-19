@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use App\User;
+use Modules\HttpHeaderAuth\Entities;
 
 class HttpHeaderAuthServiceProvider extends ServiceProvider
 {
@@ -35,18 +36,34 @@ class HttpHeaderAuthServiceProvider extends ServiceProvider
      */
     public function hooks()
     {
-        \Eventy::addAction('middleware.web.custom_handle', function($request) {
-            if (!$request->user() && isset($_SERVER['HTTP_X_AUTH_EMAIL'])) {
-                $user = User::where('email',$_SERVER['HTTP_X_AUTH_EMAIL'])->first();
-                if (!isset($user)) {
-                    $user = User::create([
-                        "email" => $_SERVER['HTTP_X_AUTH_EMAIL'],
-                        "first_name" => $_SERVER['HTTP_X_AUTH_USERNAME'],
-                        "last_name" => ".",
-                        "password" => str_random(64)
+        \Eventy::addAction('middleware.web.custom_handle', function ($request) {
+            if (!$request->user() && isset($_SERVER['HTTP_X_AUTH_SUBJECT'])) {
+                $httpuser = Entities\HttpUser::where('remote_id', $_SERVER['HTTP_X_AUTH_SUBJECT'])->first();
+                if (!isset($httpuser)) {
+                    $user = User::where('email', $_SERVER['HTTP_X_AUTH_EMAIL'])->first();
+                    if (!isset($user)) {
+                        $user = User::create([
+                            "email" => $_SERVER['HTTP_X_AUTH_EMAIL'],
+                            "first_name" => $_SERVER['HTTP_X_AUTH_USERNAME'],
+                            "last_name" => ".",
+                            "password" => str_random(64)
+                        ]);
+                        $user->save();
+                    }
+
+                    $httpuser = Entities\HttpUser::create([
+                        "remote_id" => $_SERVER['HTTP_X_AUTH_SUBJECT'],
+                        "user_id" => $user,
                     ]);
+                } else {
+                    $user = $httpuser->user;
+                    $user->email = $_SERVER['HTTP_X_AUTH_EMAIL'];
+                    $user->first_name = $_SERVER['HTTP_X_AUTH_USERNAME'];
+
+                    $user->save();
                 }
-                if (isset($user->email)) {
+
+                if (isset($user)) {
                     \Auth::login($user);
                 }
             }
