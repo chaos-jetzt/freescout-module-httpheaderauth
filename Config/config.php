@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'name' => 'LouketoAuth'
+    'name' => 'HttpHeaderAuth'
 ];

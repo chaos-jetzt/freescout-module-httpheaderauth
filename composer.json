@@ -1,5 +1,5 @@
 {
-    "name": "freescout/louketoauth",
+    "name": "freescout/httpheaderauth",
     "description": "",
     "authors": [
         {
@@ -10,16 +10,16 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Modules\\LouketoAuth\\Providers\\LouketoAuthServiceProvider"
+                "Modules\\HttpHeaderAuth\\Providers\\HttpHeaderAuthServiceProvider"
             ],
             "aliases": {
-                
+
             }
         }
     },
     "autoload": {
         "psr-4": {
-            "Modules\\LouketoAuth\\": ""
+            "Modules\\HttpHeaderAuth\\": ""
         }
     }
 }

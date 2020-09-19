@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\LouketoAuth\Database\Seeders;
+namespace Modules\HttpHeaderAuth\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class LouketoAuthDatabaseSeeder extends Seeder
+class HttpHeaderAuthDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.

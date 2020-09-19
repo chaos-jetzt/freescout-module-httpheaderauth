@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\LouketoAuth\Providers;
+namespace Modules\HttpHeaderAuth\Providers;
 
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use App\User;
 
-class LouketoAuthServiceProvider extends ServiceProvider
+class HttpHeaderAuthServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -71,10 +71,10 @@ class LouketoAuthServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('louketoauth.php'),
+            __DIR__ . '/../Config/config.php' => config_path('httpheaderauth.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'louketoauth'
+            __DIR__ . '/../Config/config.php', 'httpheaderauth'
         );
     }
 
@@ -85,17 +85,17 @@ class LouketoAuthServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/louketoauth');
+        $viewPath = resource_path('views/modules/httpheaderauth');
 
-        $sourcePath = __DIR__.'/../Resources/views';
+        $sourcePath = __DIR__ . '/../Resources/views';
 
         $this->publishes([
             $sourcePath => $viewPath
-        ],'views');
+        ], 'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/louketoauth';
-        }, \Config::get('view.paths')), [$sourcePath]), 'louketoauth');
+            return $path . '/modules/httpheaderauth';
+        }, \Config::get('view.paths')), [$sourcePath]), 'httpheaderauth');
     }
 
     /**
@@ -105,7 +105,7 @@ class LouketoAuthServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $this->loadJsonTranslationsFrom(__DIR__ .'/../Resources/lang');
+        $this->loadJsonTranslationsFrom(__DIR__ . '/../Resources/lang');
     }
 
     /**
@@ -114,7 +114,7 @@ class LouketoAuthServiceProvider extends ServiceProvider
      */
     public function registerFactories()
     {
-        if (! app()->environment('production')) {
+        if (!app()->environment('production')) {
             app(Factory::class)->load(__DIR__ . '/../Database/factories');
         }
     }

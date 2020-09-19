@@ -1,9 +1,9 @@
-@extends('louketoauth::layouts.master')
+@extends('httpheaderauth::layouts.master')
 
 @section('content')
     <h1>Hello World</h1>
 
     <p>
-        This view is loaded from module: {!! config('louketoauth.name') !!}
+        This view is loaded from module: {!! config('httpheaderauth.name') !!}
     </p>
 @stop

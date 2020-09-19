@@ -1,6 +1,6 @@
 {
-    "name": "LouketoAuth",
-    "alias": "louketoauth",
+    "name": "HttpHeaderAuth",
+    "alias": "httpheaderauth",
     "description": "",
     "version": "1.0.0",
     "detailsUrl": "",
@@ -12,7 +12,7 @@
     "active": 0,
     "order": 0,
     "providers": [
-        "Modules\\LouketoAuth\\Providers\\LouketoAuthServiceProvider"
+        "Modules\\HttpHeaderAuth\\Providers\\HttpHeaderAuthServiceProvider"
     ],
     "aliases": {},
     "files": [

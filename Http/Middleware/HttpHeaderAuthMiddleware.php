@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\LouketoAuth\Http\Middleware;
+namespace Modules\HttpHeaderAuth\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 
-class LouketoAuthMiddleware
+class HttpHeaderAuthMiddleware
 {
     /**
      * Handle an incoming request.

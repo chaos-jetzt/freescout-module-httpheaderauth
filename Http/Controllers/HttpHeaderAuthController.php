@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\LouketoAuth\Http\Controllers;
+namespace Modules\HttpHeaderAuth\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
-class LouketoAuthController extends Controller
+class HttpHeaderAuthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class LouketoAuthController extends Controller
      */
     public function index()
     {
-        return view('louketoauth::index');
+        return view('httpheaderauth::index');
     }
 
     /**
@@ -23,7 +23,7 @@ class LouketoAuthController extends Controller
      */
     public function create()
     {
-        return view('louketoauth::create');
+        return view('httpheaderauth::create');
     }
 
     /**
@@ -41,7 +41,7 @@ class LouketoAuthController extends Controller
      */
     public function show()
     {
-        return view('louketoauth::show');
+        return view('httpheaderauth::show');
     }
 
     /**
@@ -50,7 +50,7 @@ class LouketoAuthController extends Controller
      */
     public function edit()
     {
-        return view('louketoauth::edit');
+        return view('httpheaderauth::edit');
     }
 
     /**
